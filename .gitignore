@@ -1,5 +1,5 @@
-
-de_modules/
+temp/*
+node_modules/
 built/*
 tests/cases/rwc/*
 tests/cases/test262/*
