@@ -3,16 +3,21 @@
     "compilerOptions": {
         "module": "commonjs",
         "noImplicitAny": true,
-        "outDir": "dist",
         "target": "ES5",
         "sourceMap": true,
         "declaration": true,
+        "alwaysStrict": true,
+        "forceConsistentCasingInFileNames": true,
+        "moduleResolution": "node",
+        "outDir": "./dist",
         "types": [
             "jasmine"
         ]
     },
     "exclude": [
         "node_modules",
-        "tmp"
+        "**/*.spec.ts",
+        "tmp",
+        "dist"
     ]
 }

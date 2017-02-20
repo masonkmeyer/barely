@@ -1,11 +1,28 @@
 {
   "name": "barely",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "0.0.1",
+  "description": "A functional programming library written in TypeScript.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/masonkmeyer/barely.git"
+  },
+  "keywords": [
+    "maybe"
+  ],
+  "bugs": {
+    "url": "https://github.com/masonkmeyer/barely/issues"
+  },
+  "homepage": "https://github.com/masonkmeyer/barely#readme",
+  "contributors": [
+    "@masonkmeyer"
+  ],
+  "main": "./dist/index.js",
+  "typings": "./dist/index",
+  "module": "./umd/barely.js",
   "scripts": {
     "test": "karma start --browsers PhantomJS --single-run",
-    "test:dev": "karma start"
+    "test:dev": "karma start",
+    "build": "tsc && webpack"
   },
   "author": "",
   "license": "MIT",
@@ -18,6 +35,7 @@
     "karma-jasmine": "^1.1.0",
     "karma-phantomjs-launcher": "^1.0.2",
     "karma-typescript": "^2.1.7",
-    "typescript": "^2.1.6"
+    "typescript": "^2.1.6",
+    "webpack": "^2.2.1"
   }
 }
