@@ -1,4 +1,4 @@
-# Barley Functional 
+# Barely Functional 
 
 ![status](https://travis-ci.org/masonkmeyer/barely.svg?branch=master)
 
@@ -33,7 +33,7 @@ let passportNumber:string = Maybe.just(me)
      .map(x => `$#{x.passport}`)
      .else(() => "");
 
-// Maybes love to be chained
+// Maybes :heart: to be chained. 
 let companyNameMaybe:Maybe<string> = Maybe.just(me)
             .map(x => x.company)
             .map(x => x.name);
