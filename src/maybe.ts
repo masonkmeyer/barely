@@ -42,11 +42,11 @@ export class Maybe<T> implements Functor<T>, Setoid<Maybe<T>> {
     }
 
     /**
-     * @name bind
+     * @name bindFn
      * @description Applies a function to transform the maybe (if it has a value).
      * @returns Maybe<Result>
      */
-    public bind<Result>(func: (val: T) => Maybe<Result>): Maybe<Result> {
+    public bindFn<Result>(func: (val: T) => Maybe<Result>): Maybe<Result> {
         return this.hasValue
             ? func(this.value)
             : Maybe.nothing<Result>();
@@ -93,7 +93,7 @@ export class Maybe<T> implements Functor<T>, Setoid<Maybe<T>> {
      * @returns Maybe<Result>
      */
     public map<Result>(func: (val: T) => Result): Maybe<Result> {
-        return this.bind(x => this.wrap(func(this.value)));
+        return this.bindFn(x => this.wrap(func(this.value)));
     }
 
     /**

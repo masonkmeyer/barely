@@ -146,7 +146,7 @@ describe('Maybe Chaining', () => {
 
 describe('Maybe bind', () => {
     it('should not double wrap the maybe', () => {
-        let maybe = Maybe.just(1).bind(() => Maybe.just(1 * 10));
+        let maybe = Maybe.just(1).bindFn(() => Maybe.just(1 * 10));
         expect(maybe.value).toBe(10);
     });
 });
