@@ -4,6 +4,8 @@
 
 A "functional programming library written in [TypeScript](https://www.typescriptlang.org/). 
 
+``` npm install barely --save ```
+
 ## Current 
 ### Monads
 #### Maybe
