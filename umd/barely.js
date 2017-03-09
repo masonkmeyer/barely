@@ -11,41 +11,41 @@
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
-
+/******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
-
+/******/
 /******/ 		// Check if module is in cache
 /******/ 		if(installedModules[moduleId])
 /******/ 			return installedModules[moduleId].exports;
-
+/******/
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = installedModules[moduleId] = {
 /******/ 			i: moduleId,
 /******/ 			l: false,
 /******/ 			exports: {}
 /******/ 		};
-
+/******/
 /******/ 		// Execute the module function
 /******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-
+/******/
 /******/ 		// Flag the module as loaded
 /******/ 		module.l = true;
-
+/******/
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-
-
+/******/
+/******/
 /******/ 	// expose the modules object (__webpack_modules__)
 /******/ 	__webpack_require__.m = modules;
-
+/******/
 /******/ 	// expose the module cache
 /******/ 	__webpack_require__.c = installedModules;
-
+/******/
 /******/ 	// identity function for calling harmony imports with the correct context
 /******/ 	__webpack_require__.i = function(value) { return value; };
-
+/******/
 /******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
 /******/ 		if(!__webpack_require__.o(exports, name)) {
@@ -56,7 +56,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 			});
 /******/ 		}
 /******/ 	};
-
+/******/
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
 /******/ 	__webpack_require__.n = function(module) {
 /******/ 		var getter = module && module.__esModule ?
@@ -65,19 +65,81 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 		__webpack_require__.d(getter, 'a', getter);
 /******/ 		return getter;
 /******/ 	};
-
+/******/
 /******/ 	// Object.prototype.hasOwnProperty.call
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-
+/******/
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
-
+/******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function pipe(fn) {
+    var funcs = [];
+    for (var _i = 1; _i < arguments.length; _i++) {
+        funcs[_i - 1] = arguments[_i];
+    }
+    return function () {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        return !funcs.length ? fn.apply(void 0, args) : pipe.apply(void 0, [funcs[0]].concat(funcs.slice(1)))(fn.apply(void 0, args));
+    };
+}
+exports.pipe = pipe;
+//# sourceMappingURL=pipe.js.map
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var pipe_1 = __webpack_require__(0);
+/**
+ * @name compose
+ * @description Tasks varadic list of functions and wraps them going right to left
+ * For example: (f1, f2, f3) =>  f1(f2(f3(args)));
+ * @returns func that passes arguments to the wrapped functions
+ */
+function compose() {
+    var funcs = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        funcs[_i] = arguments[_i];
+    }
+    var args = funcs.reverse();
+    return pipe_1.pipe.apply(void 0, [funcs[0]].concat(funcs.slice(1)));
+}
+exports.compose = compose;
+//# sourceMappingURL=compose.js.map
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function curry(fn) {
+    var args = [];
+    for (var _i = 1; _i < arguments.length; _i++) {
+        args[_i - 1] = arguments[_i];
+    }
+    return fn.length === args.length ? fn.apply(void 0, args) : curry.bind.apply(curry, [this, fn].concat(args));
+}
+exports.curry = curry;
+//# sourceMappingURL=curry.js.map
+
+/***/ }),
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -133,11 +195,11 @@ var Maybe = (function () {
         configurable: true
     });
     /**
-     * @name bind
+     * @name bindFn
      * @description Applies a function to transform the maybe (if it has a value).
      * @returns Maybe<Result>
      */
-    Maybe.prototype.bind = function (func) {
+    Maybe.prototype.bindFn = function (func) {
         return this.hasValue
             ? func(this.value)
             : Maybe.nothing();
@@ -179,7 +241,7 @@ var Maybe = (function () {
      */
     Maybe.prototype.map = function (func) {
         var _this = this;
-        return this.bind(function (x) { return _this.wrap(func(_this.value)); });
+        return this.bindFn(function (x) { return _this.wrap(func(_this.value)); });
     };
     /**
      * @name or
@@ -226,7 +288,7 @@ exports.Maybe = Maybe;
 //# sourceMappingURL=maybe.js.map
 
 /***/ }),
-/* 1 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -234,6 +296,9 @@ exports.Maybe = Maybe;
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
+__export(__webpack_require__(1));
+__export(__webpack_require__(2));
+__export(__webpack_require__(3));
 __export(__webpack_require__(0));
 //# sourceMappingURL=index.js.map
 
