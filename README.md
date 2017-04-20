@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/masonkmeyer/barely.png?label=ready&title=Ready)](https://waffle.io/masonkmeyer/barely)
 # Barely Functional 
 
 ![status](https://travis-ci.org/masonkmeyer/barely.svg?branch=master)
