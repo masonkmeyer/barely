@@ -21,7 +21,7 @@ interface Person {
     company: Company
 }
 
-interface Comapny {
+interface Company {
     name: string;
 }
 
