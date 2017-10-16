@@ -38,7 +38,7 @@ export class Maybe<T> implements Functor<T>, Setoid<Maybe<T>> {
      * @returns boolean
      */
     public get hasValue(): boolean {
-        return this.val !== null;
+        return this.val != null;
     }
 
     /**
