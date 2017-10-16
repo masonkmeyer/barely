@@ -44,7 +44,7 @@ var Maybe = (function () {
          * @returns boolean
          */
         get: function () {
-            return this.val !== null;
+            return this.val != null;
         },
         enumerable: true,
         configurable: true
